@@ -34,7 +34,7 @@ const generateTokens = (user) => {
 // On accepte les formats courants sans bloquer les cas limites.
 // La vraie vérification se fait en base (l'utilisateur existe ou pas).
 const isMatriculeValide = (matricule) => {
-  // Étudiant  : 22U0001, 23U12345
+  // Étudiant  : 22FS0001, 23U12345
   if (/^\d{2}FS\d{4,6}$/.test(matricule)) return true;
   // Enseignant: ENS-0001, ENS-0042
   if (/^ENS-\d{4,6}$/.test(matricule))   return true;

@@ -108,10 +108,10 @@ const seed = async () => {
     });
 
     // Étudiant INFO L2
-    await upsertUser('22U0001', {
+    await upsertUser('22FS0001', {
       nom: 'Mbarga', prenom: 'Aline',
       email:      'a.mbarga@etud.uniportal.cm',
-      password:   await hash('22U0001'),
+      password:   await hash('22FS0001'),
       role:       'etudiant',
       statut:     'actif',
       niveau:     'L2',
@@ -135,7 +135,7 @@ const seed = async () => {
     logger.info('  Comptes de test :');
     logger.info('  Admin     → ADM-0001  / Admin@1234');
     logger.info('  Enseignant→ ENS-0001  / Ens@1234');
-    logger.info('  Étudiant  → 22U0001   / 22U0001');
+    logger.info('  Étudiant  → 22FS0001   / 22FS0001');
     logger.info('═══════════════════════════════════════════');
 
     await sequelize.close();

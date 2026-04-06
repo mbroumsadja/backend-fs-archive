@@ -48,7 +48,7 @@ const Utilisateur = sequelize.define('Utilisateur', {
     type:      DataTypes.STRING(20),
     allowNull: false,
     unique:    true,
-    comment:   'Format: 22U1234 (étudiant) ou ENS-0042 (enseignant)',
+    comment:   'Format: 22FS1234 (étudiant) ou ENS-0042 (enseignant)',
   },
   nom: {
     type:      DataTypes.STRING(80),

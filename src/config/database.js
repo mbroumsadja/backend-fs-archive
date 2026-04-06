@@ -4,11 +4,17 @@
 const { Sequelize } = require('sequelize');
 const logger        = require('../utils/logger');
 
-const sequelize = new Sequelize(
+const sequelize = new Sequelize(process.env.DB_URL,
   {
-    dialect: 'sqlite',
-    storage:"./database.sqlite",
-
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false // Obligatoire pour Render en mode SSL
+      },
+      connectTimeout: 20000, // Timeout de connexion
+    },
     // ── Pool de connexions ──────────────────────────────────────────────
     // Essentiel pour la scalabilité : évite de créer une connexion
     // par requête, réutilise des connexions existantes.
@@ -29,12 +35,6 @@ const sequelize = new Sequelize(
       underscored: true,       // snake_case en base → camelCase dans le code
       freezeTableName: false,  // Sequelize peut pluraliser les noms de tables
     },
-
-    dialectOptions: {
-      // Nécessaire si MySQL >= 8 avec caching_sha2_password
-      // authPlugins: { mysql_clear_password: () => () => Buffer.from('') },
-      connectTimeout: 20000,
-    },
   }
 );
 
@@ -42,9 +42,9 @@ const sequelize = new Sequelize(
 const connectDB = async () => {
   try {
     await sequelize.authenticate();
-    logger.info('✅  Connexion MySQL établie avec succès');
+    logger.info('✅  Connexion PostgreSQL établie avec succès');
   } catch (err) {
-    logger.error('❌  Impossible de se connecter à MySQL :', err.message);
+    logger.error('❌  Impossible de se connecter à PostgreSQL :', err.message);
     process.exit(1); // On arrête le serveur si la DB est inaccessible
   }
 };

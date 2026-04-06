@@ -35,7 +35,7 @@ npm start
 |-------------|------------|--------------|
 | Admin       | ADM-0001   | Admin@1234   |
 | Enseignant  | ENS-0001   | Ens@1234     |
-| Étudiant    | 22U0001    | 22U0001      |
+| Étudiant    | 22FS0001    | 22FS0001      |
 
 ---
 
@@ -54,8 +54,8 @@ npm start
 ```json
 POST /api/auth/login
 {
-  "matricule": "22U0001",
-  "password":  "22U0001"
+  "matricule": "22FS0001",
+  "password":  "22FS0001"
 }
 ```
 **Réponse :**
@@ -67,7 +67,7 @@ POST /api/auth/login
     "accessToken":  "eyJ...",
     "refreshToken": "eyJ...",
     "utilisateur": {
-      "id": 3, "matricule": "22U0001",
+      "id": 3, "matricule": "22FS0001",
       "role": "etudiant", "niveau": "L2",
       "filiere": { "nom": "Informatique" }
     }
@@ -171,7 +171,7 @@ Authorization: Bearer <accessToken>
 ```
 
 Le rôle est détecté automatiquement depuis le **format du matricule** :
-- `22U0001` → étudiant
+- `22FS0001` → étudiant
 - `ENS-0001` → enseignant
 - `ADM-0001` → admin
 
